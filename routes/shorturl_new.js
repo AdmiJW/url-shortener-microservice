@@ -21,10 +21,11 @@ if (DB_ROW_LIMIT === NaN) throw `Invalid Environment Variable: DB_ROW_LIMIT; Val
 
 //  Parse body requests (Supposed to be URL to shorten) as text. 
 route.use( express.text() );
+route.use( express.urlencoded({ extended: true }) );
 
 route.post('/', async (req,res)=> {
     Logger.logOriginConnected(req.headers.origin, req.ip, "NEW_SHORTURL");
-    let url = req.body, hostname;
+    let url = req.body?.url || req.body, hostname;
 
     try {
         //  Parses the URL and retrieve the hostname. We use 'domain' module to test if the domain exists

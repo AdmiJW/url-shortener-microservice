@@ -107,16 +107,20 @@
                     <div class='card-body'>
                         <p class="card-text">
                             Instead of sending the URL to shorten in above form, you can also send it as a <code><strong>POST</strong></code> request to
-                            <br><code class=''>https://admijw-simplurl.herokuapp.com/api/shorturl/new/[your_url]</code>
+                            <br><code>https://admijw-simplurl.herokuapp.com/api/shorturl/new/[your_url]</code>
                             <br><br>
                             <strong>Example:</strong>
                             <br>
-                            <pre class='text-left d-inline-block'><code class='text-break'>fetch('./api/shorturl/new', {
+                        </p>
+                        <pre class='text-left d-inline-block'><code class='text-break'>fetch('./api/shorturl/new', {
     method: 'POST',
     body: {desired-link-to-shorten}
 })
 .then(res => res.json() )
 .then(res => console.log(res));</code></pre>
+                        <br>
+                        <p class="card-text">
+                            Either send in the body as raw-text, or x-www-form-urlencoded data with key name as <code>url</code>
                         </p>
                     </div>
                 </div>
