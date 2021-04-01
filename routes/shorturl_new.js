@@ -34,6 +34,11 @@ route.post('/', async (req,res)=> {
         } catch (err) {
             throw `invalid url`;
         }
+
+        //  Check the protocol. Do not accept anything other than http: or https:
+        if (url.protocol !== 'http:' && url.protocol !== 'https:')
+            throw `invalid url`;
+            
         hostname = url.hostname;
 
         const validateResult = await new Promise((resolve, reject)=> {
