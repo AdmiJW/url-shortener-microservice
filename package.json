@@ -1,0 +1,20 @@
+{
+  "name": "project-3_url_shortener_microservice",
+  "version": "1.0.0",
+  "description": "Freecodecamp Project 3 - URL Shortener Microservice by AdmiJW",
+  "main": "",
+  "scripts": {
+    "start": "node server.js",
+    "dev-start": "nodemon ./server.js"
+  },
+  "author": "AdmiJW",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
