@@ -38,7 +38,7 @@ route.post('/', async (req,res)=> {
 
         const validateResult = await new Promise((resolve, reject)=> {
             dns.lookup(hostname, (err, address, family)=> {
-                if (err) reject(`No such domain found: ${err}`);
+                if (err) reject(`invalid url`);
                 resolve({ address, family });
             });
         });
