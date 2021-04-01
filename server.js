@@ -1,5 +1,9 @@
 
-require('dotenv').config();
+//  Obtain Environment variables, only if dotenv module is installed.
+try {
+    require('dotenv').config();
+} catch (err) {}
+
 
 const path = require('path');
 const express = require('express');
