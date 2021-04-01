@@ -27,27 +27,24 @@ route.post('/', async (req,res)=> {
     Logger.logOriginConnected(req.headers.origin, req.ip, "NEW_SHORTURL");
     let url = req.body?.url || req.body, hostname;
 
-    console.log("+++++++++++++++++++++++++++++++++++++++++++");
-    console.log(url);
-    console.log("+++++++++++++++++++++++++++++++++++++++++++");
 
     try {
         //  Parses the URL and retrieve the hostname. We use 'domain' module to test if the domain exists
         try {
             url = new URL(url);
         } catch (err) {
-            throw `invalid url`;
+            throw `Invalid URL`;
         }
 
         //  Check the protocol. Do not accept anything other than http: or https:
         if (url.protocol !== 'http:' && url.protocol !== 'https:')
-            throw `invalid url`;
+            throw `Invalid URL`;
 
         hostname = url.hostname;
 
         const validateResult = await new Promise((resolve, reject)=> {
             dns.lookup(hostname, (err, address, family)=> {
-                if (err) reject(`invalid url`);
+                if (err) reject(`Invalid URL`);
                 resolve({ address, family });
             });
         });
