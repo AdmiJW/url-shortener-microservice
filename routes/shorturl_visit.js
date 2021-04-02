@@ -13,7 +13,7 @@ const Logger = require('../utils/logger.js');
 
 
 route.get('/:short_url', async (req,res)=> {
-    Logger.logOriginConnected(req.headers.origin, req.ip, "VISIT_URL");
+    Logger.logOriginConnected(req.headers.origin, req.ip, "VISIT_URL", req.params.short_url);
     let { short_url } = req.params;
     let result, decoded;
 

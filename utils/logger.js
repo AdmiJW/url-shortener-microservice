@@ -74,9 +74,11 @@ function logUpdatedDate(short_url) {
  * 
  * @param {string} origin The origin where the request comes from 
  * @param {string} ip The ip address of the client
+ * @param {string} page The page that is visited
+ * @param {string} [additionalInfo] Additional info about the visit, like the URL that the user requests.
  */
-function logOriginConnected(origin, ip, url) {
-    console.log(`${Date()} - [Connected] Request made from ${origin} (IP: ${ip}) to ${url}`);
+function logOriginConnected(origin, ip, url, additionalInfo) {
+    console.log(`${Date()} - [Connected] Request made from ${origin} (IP: ${ip}) to ${url} / ${additionalInfo}`);
 }
 
 

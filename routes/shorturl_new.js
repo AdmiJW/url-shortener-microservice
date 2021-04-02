@@ -24,8 +24,8 @@ route.use( express.text() );
 route.use( express.urlencoded({ extended: true }) );
 
 route.post('/', async (req,res)=> {
-    Logger.logOriginConnected(req.headers.origin, req.ip, "NEW_SHORTURL");
-    let url = req.body?.url || req.body, hostname;
+    let url = req.body?.url || req.body;
+    Logger.logOriginConnected(req.headers.origin, req.ip, "NEW_SHORTURL", url);
 
 
     try {
