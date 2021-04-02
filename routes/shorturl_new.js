@@ -88,7 +88,7 @@ route.post('/', async (req,res)=> {
         //  Ran out of attempts. Return unable to shorten the url.
         throw `Request to shorten ${url} failed. Attempts exceeded - Unable to generate suitable ID`;
     } catch (err) {
-        res.status(400).json({ error: `${err}` });
+        res.json({ error: `${err}` });
         Logger.logError(err);
     }
 });
