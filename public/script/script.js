@@ -60,11 +60,11 @@ const tt = new TextTyper( textTyperHTML, {
 });
 
 tt.eventQueue()
-    .typeText("https://www.example.com/this-is-a-very-long-url-that-is-very-hard-to-memorize")
+    .typeText("www.example.com/this-is-a-very-very-very-very-long-url")
     .standby(1000)
-    .deleteChar(69)
+    .deleteChar(50)
     .standby(500)
-    .typeText("admijw-simplurl.herokuapp.com/v/YES")
+    .typeText("simurl.herokuapp.com/v/YES")
     .standby(5000)
     .deleteChar()
     .standby(1000)
@@ -87,7 +87,7 @@ formHTML.addEventListener('submit', (e)=> {
         return;
     }
     //  Check if the link is accidential click or attempts to loop back to the server
-    if (inputtedLink.startsWith('https://admijw-simplurl.herokuapp.com') ) {
+    if (inputtedLink.startsWith('https://simurl.herokuapp.com') ) {
         showAlertMessage('failure', 'Noo don\'t loop back to myself :(');
         return;
     }
@@ -109,7 +109,7 @@ formHTML.addEventListener('submit', (e)=> {
         //  Otherwise, show success message, and set the link in input field
         else {
             showAlertMessage('success', 'Success! Your shortened link is as below: ');
-            inputHTML.value = `https://admijw-simplurl.herokuapp.com/v/${res.short_url}`;
+            inputHTML.value = `https://simurl.herokuapp.com/v/${res.short_url}`;
         }
 
         inputHTML.classList.remove('shrink');

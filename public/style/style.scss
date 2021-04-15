@@ -4,7 +4,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-
 :root {
     font-size: 10px;
     
@@ -12,6 +11,9 @@
     --secondary: #f39c12;
     --ternary: #e67e22;
     --quadternary: #d35400;
+    --darker: #c24e00;
+    --darkertrans: rgba(194,78,0,.2);
+    --evendarker: #ad4500;
     --lighten: #ffe785;
 
     --success: #1bee73;
@@ -26,6 +28,20 @@
 
 body {
     background-color: #eee;
+    position: relative;
+}
+
+
+//==================================
+// Background divider
+//==================================
+.fixed-background {
+    position: fixed;
+    top:0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    opacity: .1;
+    background: repeating-linear-gradient( 45deg, #fff, #000 10px, #e5e5f7 10px, #000 130px );
 }
 
 
@@ -55,7 +71,7 @@ body {
         a {
             font-size: 3rem;
             color: white;
-            text-shadow: 0 0 3px #000;
+            text-shadow: 0 1px 3px #000;
             transition: .5s ease;
 
             &:hover, &:focus {
@@ -70,6 +86,7 @@ body {
 
         .nav-list {
             display: none;
+            transition: opacity .5s ease;
 
             position: absolute;
             width: 100%;
@@ -79,8 +96,10 @@ body {
         &:is(:hover, :focus, :focus-within) .nav-list {
             display: flex;
             a {
+                min-width: 50px;
                 position: relative;
-                animation: dropdown .5s ease;
+                margin: 5px 0;
+                animation: dropdown .5s ease forwards;
             }
         }
     }
@@ -102,10 +121,13 @@ body {
     0% {
         top: -50px;
         opacity: 0;
+        background-color: transparent;
     }
     100% {
         top: 0;
         opacity: 1;
+        background-color: var(--darkertrans);
+        border-radius: 10px;
     }
 }
 
@@ -260,7 +282,10 @@ main {
     .container {
         min-height: 400px;
         border-radius: 1rem;
-        box-shadow: 6px 6px 6px 0 white, -6px -6px 6px 0 darken(white, 15%);
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.37);
+        backdrop-filter: blur( 3.5px );
+        -webkit-backdrop-filter: blur( 3.5px );
     }
     #body__title {
         font: 5rem var(--font);
@@ -280,14 +305,22 @@ main {
         color: white;
 
         strong {
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         code, pre {
             color: var(--lighten);
-            font-size: 1em;
-            background-color: rgba(0,0,0,.1);
+            font-size: 1.1em;
             word-break: break-all;
+        }
+
+        .codeblock {
+            display: inline-block;
+            background-color: var(--darker);
+            box-shadow: inset 0 2px 0px var(--evendarker);
+            border-radius: 8px;
+            padding: 7px;
+            margin: 10px 0;
         }
 
         .card-header {

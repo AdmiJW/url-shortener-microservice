@@ -34,13 +34,17 @@
 
 
 <body>
+    <!-- Background -->
+    <div class="fixed-background">
+        
+    </div>
 
     <!-- Navbar -->
     <nav class='navbar navbar-dark'>
         <div class='container'>
             <a class='navbar-brand' href='#'>
                 <i class="fas fa-cut"></i>
-                SIMPL_URL
+                SIMURL
             </a>
 
             <ul class='navbar-nav'>
@@ -72,7 +76,7 @@
     <!-- Jumbotron -->
     <div class='jumbotron'>
         <div class='container d-flex flex-column justify-content-center align-items-center h-100'>
-            <h1 class='display-3'>SIMPL_URL</h1>
+            <h1 class='display-3'>✂️ SIMURL</h1>
             <small class='text-muted mb-4'>A URL Shortener Microservice</small>
             <h3 id='text-typer-title'></h1>
             <p class='alert text-center px-4 rounded-pill d-flex align-items-center' id='alert'>
@@ -107,12 +111,12 @@
                     <div class='card-body'>
                         <p class="card-text">
                             Instead of sending the URL to shorten in above form, you can also send it as a <code><strong>POST</strong></code> request to
-                            <br><code>https://admijw-simplurl.herokuapp.com/api/shorturl/new/[your_url]</code>
+                            <br><code>https://simurl.herokuapp.com/api/shorturl/new/[your_url]</code>
                             <br><br>
                             <strong>Example:</strong>
                             <br>
                         </p>
-                        <pre class='text-left d-inline-block'><code class='text-break'>fetch('./api/shorturl/new', {
+                        <pre class='text-left codeblock'><code class='text-break'>fetch('./api/shorturl/new', {
     method: 'POST',
     body: {desired-link-to-shorten}
 })
@@ -137,19 +141,19 @@
                             Upon successful shortening, the server will return a json. 
                             <br><br>
                             <strong>Example:</strong><br>
-                            <code>{ original_url : 'https://freeCodeCamp.org', short_url : aBc}</code> 
+                            <code class='codeblock'>{ original_url : 'https://freeCodeCamp.org', short_url : aBc}</code> 
                             <br>
                             where you can redirect to the target url via 
                             <br>
-                            <code>/v/&lt;short_url&gt;</code> 
+                            <code class='codeblock'>/v/&lt;short_url&gt;</code> 
                             <br>
                             or 
                             <br>
-                            <code>/api/shorturl/&lt;short_url&gt;</code>
+                            <code class='codeblock'>/api/shorturl/&lt;short_url&gt;</code>
                             <br><br>
                             On the other hand, if error occurs, the json will look like:
                             <br>
-                            <code>{ error: &lt;error-message&gt; }</code> 
+                            <code class='codeblock'>{ error: &lt;error-message&gt; }</code> 
                         </p>
                     </div>
                 </div>
