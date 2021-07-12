@@ -7,6 +7,7 @@ try {
 
 const path = require('path');
 const express = require('express');
+const rateLimiter = require('express-rate-limit');
 const app = express();
 
 //  Utilities
@@ -15,6 +16,16 @@ const Logger = require('./utils/logger.js');
 //  Routes
 const shortURL_new_route = require( './routes/shorturl_new.js' );
 const shortURL_visit_route = require( './routes/shorturl_visit.js' );
+
+//  Rate Limiters
+const apiRateLimiter = rateLimiter({
+    windowMs: 1000 * 60 * 5,            // 5 Minutes, 300 seconds
+    max: 600                            // Maximum of 900 requests in 5 minute
+});
+const staticRateLimiter = rateLimiter({
+    windowMs: 1000 * 60 * 5,            // 5 Minutes, 300 seconds
+    max: 300                            // Maximum of 300 requests in 5 minute
+}); 
 
 
 //  CORS
@@ -34,16 +45,16 @@ if (!process.env.DISABLE_XORIGIN) {
 }
 
 
-app.use('/api/shorturl/new', shortURL_new_route);
-app.use('/api/shorturl', shortURL_visit_route);
-app.use('/v', shortURL_visit_route);
-app.use('/public', express.static( path.join(__dirname, 'public') ) );
+app.use('/api/shorturl/new', apiRateLimiter, shortURL_new_route);
+app.use('/api/shorturl', apiRateLimiter, shortURL_visit_route);
+app.use('/v', apiRateLimiter, shortURL_visit_route);
+app.use('/public', staticRateLimiter, express.static( path.join(__dirname, 'public') ) );
 
 
 
 
 //  Front end page
-app.get('/', async (req,res)=> {
+app.get('/', apiRateLimiter, async (req,res)=> {
     res.sendFile( path.join(__dirname, 'views', 'index.html') );
     Logger.logOriginConnected(req.headers.origin, req.ip, "HOMEPAGE");
 });
