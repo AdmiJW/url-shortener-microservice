@@ -1,5 +1,5 @@
-
-require('dotenv').config();
+if (require('dotenv'))
+    require('dotenv').config();
 
 
 const path = require('path');
